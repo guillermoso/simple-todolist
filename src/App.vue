@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <todolist></todolist>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import todolist from './components/todolist.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    todolist
   }
 }
 </script>
@@ -23,6 +22,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background-image: linear-gradient( #b3d1ff , #e6f0ff);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  margin: 0;
 }
 </style>
