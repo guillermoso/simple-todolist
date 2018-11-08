@@ -1,9 +1,24 @@
 <template>
     <div class="container">
+        <h1>Lista de tareas</h1>
         <div class="task-in">
-            <input type="text"> 
-            <input type="button" value="Añadir">    
-        </div>        
+            <input type="text" placeholder="Nueva tarea"> 
+            <button class="button blue">
+                 Anadir    
+                 <font-awesome-icon class="icon" icon="plus" />
+            </button>  
+        </div>       
+        <div class="buttons">
+            <button class="button">
+                Borrar completados
+                <font-awesome-icon class="icon" icon="check" />
+            </button>
+            <button class="button">
+                Borrar todos
+                 <font-awesome-icon class="icon" icon="trash" />
+            </button>
+        </div> 
+        
     </div>
 </template>
 
@@ -21,8 +36,6 @@ export default {
     margin-top: 6em;
     background-color: #ffffff;
     border-radius: 1%;
-    display: flex;
-    justify-content: center;
 }
 
 .task-in {
@@ -33,22 +46,41 @@ export default {
 
 }
 
-.container input[type=text] {
+.container .task-in input[type=text] {
     width: 100%;
     height: 3em;
     margin: 10px;
     border-radius: 1%;
     border: 1px solid #b3b3b3;
+    padding-left: 8px;
+
 }
 
-.container input[type=button] {
+.button {
     width: 20%;
+    height: 100%;
     height: 3em;
     border: none;
-    background-color: #000080;
     color: white;
-    margin: 10px;
-    
+    margin: 10px;    
+}
+
+.buttons button {
+    width: 30%;
+}
+
+.blue {
+    background-color: #000080;
+}
+
+
+
+.buttons {
+    text-align: right;
+}
+
+.icon {
+    margin-left: 8px;
 }
 
 
