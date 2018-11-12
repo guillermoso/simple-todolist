@@ -4,7 +4,7 @@
         <div class="task-in">
             <input type="text" placeholder="Nueva tarea"> 
             <button class="button blue">
-                 Anadir    
+                 Añadir    
                  <font-awesome-icon class="icon" icon="plus" />
             </button>  
         </div>       
@@ -36,6 +36,7 @@ export default {
     margin-top: 6em;
     background-color: #ffffff;
     border-radius: 1%;
+    box-shadow: -5px 6px 30px rgba(78, 78, 78, 0.534);
 }
 
 .task-in {
@@ -58,11 +59,11 @@ export default {
 
 .button {
     width: 20%;
-    height: 100%;
     height: 3em;
     border: none;
     color: white;
-    margin: 10px;    
+    margin: 10px; 
+       
 }
 
 .buttons button {
