@@ -7,7 +7,7 @@
                  Añadir    
                  <font-awesome-icon class="icon" icon="plus" />
             </button>  
-        </div>       
+        </div>
         <div class="buttons">
             <button class="button green">
                 Borrar completados
@@ -18,13 +18,18 @@
                  <font-awesome-icon class="icon" icon="trash" />
             </button>
         </div> 
-        
+        <tasks></tasks>
     </div>
 </template>
 
 <script>
+
+import tasks from './task.vue'
+
 export default {
-        
+        components: {
+            tasks
+        }
 }
 </script>
 
@@ -63,8 +68,7 @@ export default {
     border: none;
     color: white;
     margin: 10px; 
-    font-size: 14px;
-       
+    font-size: 14px;       
 }
 
 .buttons button {
