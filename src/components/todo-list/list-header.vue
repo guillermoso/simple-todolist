@@ -9,11 +9,11 @@
             </button>  
         </div>       
         <div class="buttons">
-            <button class="button">
+            <button class="button green">
                 Borrar completados
                 <font-awesome-icon class="icon" icon="check" />
             </button>
-            <button class="button">
+            <button class="button red">
                 Borrar todos
                  <font-awesome-icon class="icon" icon="trash" />
             </button>
@@ -63,6 +63,7 @@ export default {
     border: none;
     color: white;
     margin: 10px; 
+    font-size: 14px;
        
 }
 
@@ -74,6 +75,13 @@ export default {
     background-color: #000080;
 }
 
+.red {
+    background-color: #cc0000;
+}
+
+.green {
+    background-color: #00cc00;
+}
 
 
 .buttons {

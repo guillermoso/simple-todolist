@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import todolist from './components/todolist.vue'
+import todolist from './components/todo-list/list-header.vue'
 
 export default {
   name: 'App',
@@ -17,7 +17,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Merriweather Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
