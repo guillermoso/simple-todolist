@@ -58,7 +58,7 @@ export default {
     margin: 10px;
     border-radius: 1%;
     border: 1px solid #b3b3b3;
-    padding-left: 8px;
+    padding-left: 20px;
 
 }
 
@@ -74,19 +74,6 @@ export default {
 .buttons button {
     width: 30%;
 }
-
-.blue {
-    background-color: #000080;
-}
-
-.red {
-    background-color: #cc0000;
-}
-
-.green {
-    background-color: #00cc00;
-}
-
 
 .buttons {
     text-align: right;
