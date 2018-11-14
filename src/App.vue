@@ -31,4 +31,17 @@ export default {
 body {
   margin: 0;
 }
+
+.blue {
+    background-color: #000080;
+}
+
+.red {
+    background-color: #cc0000;
+}
+
+.green {
+    background-color: #00cc00;
+}
+
 </style>
