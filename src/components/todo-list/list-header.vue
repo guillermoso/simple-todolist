@@ -2,8 +2,8 @@
     <div class="container">
         <h1>Lista de tareas</h1>
         <div class="task-in">
-            <input type="text" placeholder="Nueva tarea"> 
-            <button class="button blue">
+            <input type="text" placeholder="Nueva tarea" v-model="newTask" @keyup.enter="writeTask()"> 
+            <button class="button blue" @click="writeTask()">
                  Añadir    
                  <font-awesome-icon class="icon" icon="plus" />
             </button>  
@@ -18,17 +18,40 @@
                  <font-awesome-icon class="icon" icon="trash" />
             </button>
         </div> 
-        <tasks></tasks>
+        <tasks ref="tasks"></tasks>
     </div>
 </template>
 
 <script>
-
-import tasks from './task.vue'
+import axios from 'axios';
+import tasks from './task.vue';
 
 export default {
         components: {
             tasks
+        },
+        data () {
+            return {
+                newTask: ''
+            }
+        },
+        methods: {
+            writeTask () {
+                const today = new Date();
+                const task = {
+                    creationDate: today,
+                    task: this.newTask
+                }
+                
+                axios.post('https://todo-list-memo.firebaseio.com/tasks.json', task)
+                    .then(response => {
+                        this.$refs.tasks.updateTasks();
+                    })
+                    .catch(error => console.log(error));
+                
+                this.newTask = '';
+                
+            }
         }
 }
 </script>

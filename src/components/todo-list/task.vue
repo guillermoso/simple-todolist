@@ -12,8 +12,37 @@
 
 
 <script>
+import axios from 'axios';
+
 export default {
-    
+    data () {
+        return {
+            tasks: []
+        }
+    },
+    methods: {
+        updateTasks() {
+            axios.get('https://todo-list-memo.firebaseio.com/tasks.json')
+                .then(response => {
+                    const db_tasks = response.data;
+                    for (const key in db_tasks) {
+                       this.tasks.push(db_tasks[key].task);
+                    }    
+                })
+                .catch(error => console.log(error));
+                
+        }
+    },
+    created () {
+        axios.get('https://todo-list-memo.firebaseio.com/tasks.json')
+            .then(response => {
+                const db_tasks = response.data;
+                    for (const key in db_tasks) {
+                       this.tasks.push(db_tasks[key].task);
+                    } 
+            })
+            .catch(error => console.log(error));
+    }
 }
 </script>
 
