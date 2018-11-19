@@ -1,13 +1,16 @@
 <template>
-    <ul>
-        <li class="task">
-            <button class="task-item"> task </button>
-            <button class="delete red">
-                 <font-awesome-icon class="icon" icon="times" />
-            </button>
-        </li>
+    <div>
+        <ul>
+            <li v-for="task in tasks" class="task">
+                <button class="task-item" @click="updateCompleted()"> {{ task.task }} </button>
+                <button class="delete red">
+                    <font-awesome-icon class="icon" icon="times" />
+                </button>
+            </li>
+        </ul>
+        {{ tasks }} 
 
-    </ul>
+    </div>
 </template>
 
 
@@ -21,36 +24,41 @@ export default {
         }
     },
     methods: {
-        updateTasks() {
-            axios.get('https://todo-list-memo.firebaseio.com/tasks.json')
+        getTasks() {
+             axios.get('https://todo-list-memo.firebaseio.com/tasks.json')
                 .then(response => {
                     const db_tasks = response.data;
+                    const ids = Object.keys(db_tasks); 
+                    let i = 0;
+
                     for (const key in db_tasks) {
                         let temp = {
+                            id: ids[i],
                             task: db_tasks[key].task,
                             completed: db_tasks[key].completed
                         };
                         this.tasks.push(temp);
-                    }    
+                        i++;
+                    }  
                 })
                 .catch(error => console.log(error));
-                
+        },
+        updateTasks() {
+            this.tasks = [];
+            this.getTasks();                
+        },
+        updateCompleted() {
+            
         }
     },
     created () {
-        axios.get('https://todo-list-memo.firebaseio.com/tasks.json')
-            .then(response => {
-                const db_tasks = response.data;
-                    for (const key in db_tasks) {
-                       this.tasks.push(db_tasks[key].task);
-                    } 
-            })
-            .catch(error => console.log(error));
+        this.getTasks();
     }
 }
 </script>
 
 <style scoped>
+
 ul {
     list-style-type: none;
     margin: 0;

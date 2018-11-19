@@ -18,7 +18,9 @@
                  <font-awesome-icon class="icon" icon="trash" />
             </button>
         </div> 
-        <tasks ref="tasks"></tasks>
+        <tasks 
+            ref="tasks"
+            ></tasks>
     </div>
 </template>
 
@@ -32,6 +34,7 @@ export default {
         },
         data () {
             return {
+                tasks: [],
                 newTask: ''
             }
         },
@@ -51,6 +54,9 @@ export default {
                     .catch(error => console.log(error));
                 
                 this.newTask = '';
+                
+            },
+            deleteAll() {
                 
             }
         }
