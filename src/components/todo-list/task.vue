@@ -2,7 +2,18 @@
     <div>
         <ul>
             <li v-for="(task, index) in tasks" class="task">
-                <button class="task-item" @click="updateCompleted()"> {{ task.task }} {{ index }} {{ task.id }} </button>
+                <button 
+                    class="task-item" 
+                    @click="updateCompleted(index)">
+                        <font-awesome-icon 
+                            v-if="task.completed" 
+                            class="icon" 
+                            icon="check"/>
+                        <span
+                            class="task-text">
+                            {{ task.task }}
+                        </span>
+                 </button>
                 <button class="delete red" @click="deleteTask(task.id)">
                     <font-awesome-icon class="icon" icon="times" />
                 </button>
@@ -50,8 +61,8 @@ export default {
            
             this.getTasks();                
         },
-        updateCompleted() {
-            
+        updateCompleted(index) {
+            this.tasks[index].completed = !this.tasks[index].completed;
         },
         deleteTask(id) {
              swal({
@@ -107,10 +118,12 @@ button {
 .task-item {
      width: 100%; 
      margin-right: 0; 
-     padding-left: 20px;
+     padding-left: 10px;
      text-align: left;
      background-color: #e4e5e7;
      color: #727781;
+     display: grid;
+     grid-template-columns: 30px 1fr;
 }
 
 .task-item:hover {
@@ -122,4 +135,13 @@ button {
     margin-left: 0;
     padding: 0;
 }
+
+.icon {
+    grid-column: 0 / 1;
+}
+
+.task-text {
+    grid-column: 1 / 2;
+}
+
 </style>
