@@ -1,9 +1,9 @@
 <template>
     <div>
         <ul>
-            <li v-for="task in tasks" class="task">
-                <button class="task-item" @click="updateCompleted()"> {{ task.task }} </button>
-                <button class="delete red">
+            <li v-for="(task, index) in tasks" class="task">
+                <button class="task-item" @click="updateCompleted()"> {{ task.task }} {{ index }} {{ task.id }} </button>
+                <button class="delete red" @click="deleteTask(task.id)">
                     <font-awesome-icon class="icon" icon="times" />
                 </button>
             </li>
@@ -16,6 +16,7 @@
 
 <script>
 import axios from 'axios';
+import swal from 'sweetalert2';
 
 export default {
     data () {
@@ -31,6 +32,8 @@ export default {
                     const ids = Object.keys(db_tasks); 
                     let i = 0;
 
+                    this.tasks = [];
+
                     for (const key in db_tasks) {
                         let temp = {
                             id: ids[i],
@@ -44,11 +47,35 @@ export default {
                 .catch(error => console.log(error));
         },
         updateTasks() {
-            this.tasks = [];
+           
             this.getTasks();                
         },
         updateCompleted() {
             
+        },
+        deleteTask(id) {
+             swal({
+                        title: 'Borrar registro?',
+                        confirmButtonText: "Borrar",
+                        confirmButtonColor: "#cc0000",
+                        showCancelButton: true
+                    }).then((result) => {
+                        if (result.value) {
+                        
+                        axios.delete('https://todo-list-memo.firebaseio.com/tasks/' + id + '.json')
+                            .then(response => {
+                                 swal({
+                                    type: 'success',
+                                    title: 'Tarea borrada'
+                                });
+                                this.updateTasks();
+                            })
+                            .catch(error => console.log(error));
+
+                       
+                        }
+                        
+                    });
         }
     },
     created () {

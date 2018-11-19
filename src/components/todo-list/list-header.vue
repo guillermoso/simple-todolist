@@ -13,7 +13,7 @@
                 Borrar completados
                 <font-awesome-icon class="icon" icon="check" />
             </button>
-            <button class="button red">
+            <button class="button red" @click="deleteAll()">
                 Borrar todos
                  <font-awesome-icon class="icon" icon="trash" />
             </button>
@@ -27,6 +27,7 @@
 <script>
 import axios from 'axios';
 import tasks from './task.vue';
+import swal from 'sweetalert2';
 
 export default {
         components: {
@@ -57,7 +58,27 @@ export default {
                 
             },
             deleteAll() {
-                
+                 swal({
+                        title: 'Borrar todos?',
+                        confirmButtonText: "Borrar todos",
+                        confirmButtonColor: "#cc0000",
+                        showCancelButton: true
+                    }).then((result) => {
+                        
+                        if (result.value) {
+                        
+                        axios.delete('https://todo-list-memo.firebaseio.com/tasks.json/')
+                            .catch(error => console.log(error));
+
+                        swal({
+                            type: 'success',
+                            title: 'Se borraron todas las tareas'
+                        });
+                        this.$refs.tasks.tasks = [];
+                        }
+                        
+                    });
+                   
             }
         }
 }
