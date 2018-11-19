@@ -26,7 +26,11 @@ export default {
                 .then(response => {
                     const db_tasks = response.data;
                     for (const key in db_tasks) {
-                       this.tasks.push(db_tasks[key].task);
+                        let temp = {
+                            task: db_tasks[key].task,
+                            completed: db_tasks[key].completed
+                        };
+                        this.tasks.push(temp);
                     }    
                 })
                 .catch(error => console.log(error));

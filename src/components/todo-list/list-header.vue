@@ -40,7 +40,8 @@ export default {
                 const today = new Date();
                 const task = {
                     creationDate: today,
-                    task: this.newTask
+                    task: this.newTask,
+                    completed: false
                 }
                 
                 axios.post('https://todo-list-memo.firebaseio.com/tasks.json', task)
