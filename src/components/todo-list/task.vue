@@ -58,9 +58,7 @@ export default {
                             i++;
                          }
                     }
-
-                    this.adjustHeight();
-                    
+                    this.adjustHeight();                    
                 })
                 .catch(error => console.log(error));
         },
@@ -77,7 +75,6 @@ export default {
                         completed: this.tasks[index].completed
                     })
                     .catch(error => console.logs(error));
-
         },
         deleteTask(id) {
              swal({
@@ -125,7 +122,6 @@ export default {
                                 .catch(error => console.log(error));  
                     }
                 }
-
                 swal({
                     type: 'success',
                     title: 'Tareas completadas borradas'
@@ -136,16 +132,12 @@ export default {
                     title: 'No hay tareas completadas'
                 });
             }
-            
-            
         },
         adjustHeight() {
              if (this.tasks.length > 5) {
-                        console.log('entra');
                         const excedingTasks = this.tasks.length - 5;
                         const totalHeight = 495 + (excedingTasks * 54);
 
-                        console.log(totalHeight);
                         document.getElementById("container").style.height = totalHeight + "px";
                     }
         }

@@ -40,18 +40,26 @@ export default {
         },
         methods: {
             writeTask () {
-                const today = new Date();
-                const task = {
-                    creationDate: today,
-                    task: this.newTask,
-                    completed: false
-                }
                 
-                axios.post('https://todo-list-memo.firebaseio.com/tasks.json', task)
-                    .then(response => {
-                        this.$refs.tasks.updateTasks();
-                    })
-                    .catch(error => console.log(error));
+                if (this.newTask != '') {
+                     const today = new Date();
+                    const task = {
+                        creationDate: today,
+                        task: this.newTask,
+                        completed: false
+                    }
+                    
+                    axios.post('https://todo-list-memo.firebaseio.com/tasks.json', task)
+                        .then(response => {
+                            this.$refs.tasks.updateTasks();
+                        })
+                        .catch(error => console.log(error));
+                } else {
+                    swal({
+                            type: 'warning',
+                            title: 'No se pueden guardar tareas vacias'
+                        });
+                }            
                 
                 this.newTask = '';                
             },
@@ -74,9 +82,7 @@ export default {
                         });
                         this.$refs.tasks.tasks = [];
                         }
-                        
                     });
-                   
             },
             deleteCompleted() {
                 this.$refs.tasks.deleteCompleted();
