@@ -36,12 +36,24 @@ body {
     background-color: #000080;
 }
 
+.blue:hover {
+    background-color: #000066;
+}
+
 .red {
     background-color: #cc0000;
 }
 
+.red:hover {
+    background-color: #b30000;
+}
+
 .green {
     background-color: #00cc00;
+}
+
+.green:hover {
+    background-color: #00b300;
 }
 
 </style>

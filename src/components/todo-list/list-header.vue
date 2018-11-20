@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" id="container">
         <h1>Lista de tareas</h1>
         <div class="task-in">
             <input type="text" placeholder="Nueva tarea" v-model="newTask" @keyup.enter="writeTask()"> 
@@ -9,7 +9,7 @@
             </button>  
         </div>
         <div class="buttons">
-            <button class="button green">
+            <button class="button green" @click="deleteCompleted()">
                 Borrar completados
                 <font-awesome-icon class="icon" icon="check" />
             </button>
@@ -35,7 +35,6 @@ export default {
         },
         data () {
             return {
-                tasks: [],
                 newTask: ''
             }
         },
@@ -54,8 +53,7 @@ export default {
                     })
                     .catch(error => console.log(error));
                 
-                this.newTask = '';
-                
+                this.newTask = '';                
             },
             deleteAll() {
                  swal({
@@ -79,6 +77,9 @@ export default {
                         
                     });
                    
+            },
+            deleteCompleted() {
+                this.$refs.tasks.deleteCompleted();
             }
         }
 }
@@ -87,9 +88,9 @@ export default {
 <style scoped>
 
 .container {
-    height: 30em;
-    width: 40em;
-    margin-top: 6em;
+    height: 495px;
+    width: 640px;
+    margin-top: 90px;
     background-color: #ffffff;
     border-radius: 1%;
     box-shadow: -5px 6px 30px rgba(78, 78, 78, 0.534);
