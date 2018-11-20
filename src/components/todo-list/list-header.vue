@@ -73,7 +73,7 @@ export default {
                         
                         if (result.value) {
                         
-                        axios.delete('https://todo-list-memo.firebaseio.com/tasks.json/')
+                        axios.delete('https://todo-list-memo.firebaseio.com/tasks.json')
                             .catch(error => console.log(error));
 
                         swal({
